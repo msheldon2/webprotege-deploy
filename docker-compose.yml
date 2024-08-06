@@ -212,8 +212,7 @@ services:
 
   nginx:
     image: protegeproject/webprotege-nginx:1.2.0
-    hostname: webprotege-local.edu
-    ports:
+    hostname: localhost
       - 80:80
       - 12668:80
     depends_on: 
