@@ -94,7 +94,7 @@ services:
       keycloak:
         condition: service_healthy
     # ports:
-      # - 8888:8080
+    #   - 12668:8080
     environment:
       minio.access.key: minioadmin
       minio.access.secret: minioadmin
@@ -121,67 +121,67 @@ services:
       spring.zipkin.baseUrl: http://zipkin:9411
       JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
 
-  webprotege-user-management-service:
-    image: protegeproject/webprotege-user-management-service:1.0.1
-    depends_on:
-      keycloak:
-        condition: service_healthy
-      mongo:
-        condition: service_started
-      zipkin:
-        condition: service_started
-      rabbitmq:
-        condition: service_healthy
-    environment:
-      JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
+  # webprotege-user-management-service:
+  #   image: protegeproject/webprotege-user-management-service:1.0.1
+  #   depends_on:
+  #     keycloak:
+  #       condition: service_healthy
+  #     mongo:
+  #       condition: service_started
+  #     zipkin:
+  #       condition: service_started
+  #     rabbitmq:
+  #       condition: service_healthy
+  #   environment:
+  #     JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
 
-  webprotege-event-history-service:
-    image: protegeproject/webprotege-event-history-service:1.0.2
-    ports:
-      - '5006:5006'
-    depends_on:
-      mongo:
-        condition: service_started
-      zipkin:
-        condition: service_started
-      rabbitmq:
-        condition: service_healthy
-    environment:
-      JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
-      _JAVA_OPTIONS: >
-        -Xdebug
-        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006
+  # webprotege-event-history-service:
+  #   image: protegeproject/webprotege-event-history-service:1.0.2
+  #   ports:
+  #     - '5006:5006'
+  #   depends_on:
+  #     mongo:
+  #       condition: service_started
+  #     zipkin:
+  #       condition: service_started
+  #     rabbitmq:
+  #       condition: service_healthy
+  #   environment:
+  #     JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
+  #     _JAVA_OPTIONS: >
+  #       -Xdebug
+  #       -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006
 
-  webprotege-ontology-processing-service:
-    image: protegeproject/webprotege-ontology-processing-service:1.0.0
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
-      minio:
-        condition: service_started
-      zipkin:
-        condition: service_started
-    environment:
-      JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
-      webprotege.minio.accessKey: webprotege
-      webprotege.minio.secretKey: webprotege
-      webprotege.minio.endPoint: http://minio:9000
+  # webprotege-ontology-processing-service:
+  #   image: protegeproject/webprotege-ontology-processing-service:1.0.0
+  #   depends_on:
+  #     rabbitmq:
+  #       condition: service_healthy
+  #     minio:
+  #       condition: service_started
+  #     zipkin:
+  #       condition: service_started
+  #   environment:
+  #     JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
+  #     webprotege.minio.accessKey: webprotege
+  #     webprotege.minio.secretKey: webprotege
+  #     webprotege.minio.endPoint: http://minio:9000
 
 
-  webprotege-initial-revision-history-service:
-    image:  protegeproject/webprotege-initial-revision-history-service:1.0.0
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
-      minio:
-        condition: service_started
-      zipkin:
-        condition: service_started
-    environment:
-      JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
-      webprotege.minio.accessKey: webprotege
-      webprotege.minio.secretKey: webprotege
-      webprotege.minio.endPoint: http://minio:9000
+  # webprotege-initial-revision-history-service:
+  #   image:  protegeproject/webprotege-initial-revision-history-service:1.0.0
+  #   depends_on:
+  #     rabbitmq:
+  #       condition: service_healthy
+  #     minio:
+  #       condition: service_started
+  #     zipkin:
+  #       condition: service_started
+  #   environment:
+  #     JDK_JAVA_OPTIONS: --add-opens java.base/sun.net=ALL-UNNAMED
+  #     webprotege.minio.accessKey: webprotege
+  #     webprotege.minio.secretKey: webprotege
+  #     webprotege.minio.endPoint: http://minio:9000
 
   webprotege-backend-service:
     user: root
@@ -215,6 +215,7 @@ services:
     hostname: webprotege-local.edu
     ports:
       - 80:80
+      - 12668:80
     depends_on: 
       - webprotege-gwt-ui-server
       - keycloak
