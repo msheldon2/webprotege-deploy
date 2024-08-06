@@ -212,7 +212,7 @@ services:
 
   nginx:
     image: protegeproject/webprotege-nginx:1.2.0
-    hostname: localhost
+    hostname: webprotege-local.edu
       - 80:80
       - 12668:80
     depends_on: 
