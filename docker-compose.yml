@@ -214,7 +214,7 @@ services:
     image: protegeproject/webprotege-nginx:1.2.0
     hostname: webprotege-local.edu
     ports:
-      - 80:80
+      - 12668:80
     depends_on: 
       - webprotege-gwt-ui-server
       - keycloak
