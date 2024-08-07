@@ -24,8 +24,8 @@ services:
 
   keycloak:
     image: protegeproject/keycloak
-    # ports:
-    #   - 8080:8080
+    ports:
+      - 8080:8080
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: password
@@ -210,14 +210,14 @@ services:
     - webprotege-data-directory:/srv/webprotege
 
 
-  nginx:
-    image: protegeproject/webprotege-nginx:1.2.0
-    hostname: localhost
-      - 80:80
-      - 12668:80
-    depends_on: 
-      - webprotege-gwt-ui-server
-      - keycloak
+  # nginx:
+  #   image: protegeproject/webprotege-nginx:1.2.0
+  #   hostname: localhost
+  #     - 80:80
+  #     - 12668:80
+  #   depends_on: 
+  #     - webprotege-gwt-ui-server
+  #     - keycloak
 
 volumes:
   webprotege-data-directory:
