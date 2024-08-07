@@ -93,8 +93,8 @@ services:
       #   condition: service_started
       keycloak:
         condition: service_healthy
-    ports:
-      - 12668:8080
+    # ports:
+    #   - 12668:8080
     environment:
       minio.access.key: minioadmin
       minio.access.secret: minioadmin
@@ -210,14 +210,14 @@ services:
     - webprotege-data-directory:/srv/webprotege
 
 
-  # nginx:
-  #   image: protegeproject/webprotege-nginx:1.2.0
-  #   hostname: localhost
-  #     - 80:80
-  #     - 12668:80
-  #   depends_on: 
-  #     - webprotege-gwt-ui-server
-  #     - keycloak
+  nginx:
+    image: protegeproject/webprotege-nginx:1.2.0
+    hostname: localhost
+    ports:
+      - 12668:80
+    depends_on: 
+      - webprotege-gwt-ui-server
+      - keycloak
 
 volumes:
   webprotege-data-directory:
