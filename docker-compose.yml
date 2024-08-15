@@ -31,9 +31,9 @@ services:
       KEYCLOAK_PASSWORD: password
       PROXY_ADDRESS_FORWARDING: "true"
       KEYCLOAK_LOGLEVEL: DEBUG
-      KEYCLOAK_FRONTEND_URL: "http://webprotege-local.edu/auth"
+      KEYCLOAK_FRONTEND_URL: "http://localhost/auth"
       KEYCLOAK_IMPORT: /tmp/webprotege.json
-      KEYCLOAK_HOSTNAME_ADMIN_URL: "http://webprotege-local.edu/auth"
+      KEYCLOAK_HOSTNAME_ADMIN_URL: "http://localhost/auth"
     volumes:
       - keycloak-h2-directory:/opt/jboss/keycloak/standalone/data
       - ./keycloak:/tmp
@@ -212,7 +212,7 @@ services:
 
   nginx:
     image: protegeproject/webprotege-nginx:1.2.0
-    hostname: webprotege-local.edu
+    hostname: localhost
     ports:
       - 80:80
     depends_on: 

@@ -2371,7 +2371,7 @@
     "oauth2DeviceCodeLifespan": "600",
     "parRequestUriLifespan": "60",
     "clientSessionMaxLifespan": "0",
-    "frontendUrl": "http://webprotege-local.edu/auth"
+    "frontendUrl": "http://localhost/auth"
   },
   "keycloakVersion": "16.1.1",
   "userManagedAccessAllowed": true,
