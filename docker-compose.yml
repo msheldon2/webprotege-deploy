@@ -211,7 +211,7 @@ services:
 
 
   nginx:
-    image: protegeproject/webprotege-nginx:1.2.0
+    image: registry.gitlab.com/st-ora/sosoa-services/sosoa-shared-resources/webprotege:nginx
     hostname: localhost
     ports:
       - 80:80
